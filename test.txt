@@ -16,3 +16,22 @@ module "RabbitMQ2" {
   key_name                              = "${var.key_name}"
   image_id                              = "${var.rabbitmq_ami}"
 }
+
+##################################################################################################
+## CASSANDRA
+##################################################################################################
+module "cassandra" {
+  source                                = "./modules/Cassandra"
+  vpc_id                                = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_cidr                              = "${data.terraform_remote_state.vpc.vpc_cidr}"
+  cassandra_subnet_id                   = "${data.terraform_remote_state.vpc.cas_subnet_ids}"
+  availability_zones_to_use             = "${var.availability_zones_to_use}"
+  environment_id                        = "${var.environment_id}"
+  bastion_sg_id                         = "${module.bastion.bastion_sg_id}"
+  key_name                              = "${var.key_name}"
+  region                                = "${var.aws_region}"
+  ops_instance_size                     = "${var.cassandra_ops_instance_size}"
+  ops_ami_id                            = "${var.cassandra_ops_amd_id}"
+  node_instance_size                    = "${var.cassandra_node_instance_size}"
+  node_ami_id                           = "${var.cassandra_node_ami_id}"
+}
