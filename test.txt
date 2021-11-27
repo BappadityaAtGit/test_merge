@@ -16,3 +16,4 @@ module "RabbitMQ2" {
   key_name                              = "${var.key_name}"
   image_id                              = "${var.rabbitmq_ami}"
 }
+
