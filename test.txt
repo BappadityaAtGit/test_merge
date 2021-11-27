@@ -1,18 +1,1 @@
-module "RabbitMQ2" {
-  source                                = "./modules/RabbitMQ2"
-  environment_id                        = "${var.environment_id}"
-  vpc_id                                = "${data.terraform_remote_state.vpc.vpc_id}"
-  vpc_cidr                              = "${data.terraform_remote_state.vpc.vpc_cidr}"
-  vpc_zone_identifier                   = "${data.terraform_remote_state.vpc.app_subnet_ids}"
-  bastion_sg_id                         = "${module.bastion.bastion_sg_id}"
-  access_key_id                         = "${var.rabbitmq_aws_access_key_id}"
-  secret_key                            = "${var.rabbitmq_aws_secret_key}"
-  admin_username                        = "${var.rabbitmq_admin_username}"
-  admin_password                        = "${var.rabbitmq_admin_password}"
-  app_username                          = "${var.rabbitmq_app_username}"
-  app_password                          = "${var.rabbitmq_app_password}"
-  internal_dns_zone_id                  = "${aws_route53_zone.internal_dns_zone.zone_id}"
-  rabbitmq_instance_size                = "${var.rabbitmq_instance_size}"
-  key_name                              = "${var.key_name}"
-  image_id                              = "${var.rabbitmq_ami}"
-}
+
